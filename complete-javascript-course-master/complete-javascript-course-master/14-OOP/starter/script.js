@@ -2,6 +2,7 @@
 
 ///////////////////////////////////////
 // Constructor function and thje new Operator
+/*
 const Person = function (firstName, birthYear) {
   // Instance properties
   this.firstName = firstName;
@@ -58,7 +59,6 @@ console.log(jonas.species, matilda.species);
 console.log(jonas.hasOwnProperty("FirstName"));
 console.log(jonas.hasOwnProperty("species"));
 
-/*
 /////////////////////////////////////////
 // Prototypal Inheritance on Built-In Objects
 console.log(jonas.__proto__);
@@ -82,12 +82,10 @@ console.log(arr.unique());
 
 const h1 = document.querySelector("h1");
 console.dir(x => x + 1);
-*/
 
 ///////////////////////////////////////
 // Coding Challenge #1
 
-/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -111,7 +109,7 @@ bmw.accelerate();
 bmw.accelerate();
 bmw.brake();
 bmw.accelerate();
-*/
+
 
 ///////////////////////////////////////
 // ES6 Classes
@@ -178,7 +176,6 @@ const walter = new PersonCl("Walter White", 1965);
 
 PersonCl.hey();
 
-/*
 /////////////////////////////////////////
 // Setters and Getters
 const account = {
@@ -198,7 +195,6 @@ console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
-*/
 
 /////////////////////////////////////////
 // Object.create
@@ -250,14 +246,53 @@ class CarCl {
   }
 
   set speedUS(speed) {
-    this.speed * speed * 1.6
+    this.speed * speed * 1.6;
   }
 }
 
 const ford = new CarCl("Ford", 120);
-console.log(ford.speedUS)
+console.log(ford.speedUS);
 ford.accelerate();
 ford.accelerate();
 ford.brake();
 ford.speedUS = 50;
-console.log(ford)
+console.log(ford);
+*/
+
+/////////////////////////////////////////
+// Inheritance Between "Classes": Constructor Functions
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = Student("Mike", 2020, "Computer Science");
+mike.introduce();
+// mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
