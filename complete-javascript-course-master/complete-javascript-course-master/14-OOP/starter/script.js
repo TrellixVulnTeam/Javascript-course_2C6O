@@ -453,11 +453,10 @@ jay.calcAge();
 class Account {
   // 1) Public fields (instances)
   locale = navigator.language;
-  
+
   // 2) Private fields (instances)
   #movements = [];
   #pin;
-
 
   constructor(owner, currency, pin) {
     this.owner = owner;
@@ -479,17 +478,20 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
-    this.deposit(-val)
+    this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     // if (this.#approveLoan(val)) {
     if (this._approveLoan(val)) {
-      this.deposit(val)
+      this.deposit(val);
       console.log("Loan approved");
+      return this;
     }
   }
 
@@ -500,11 +502,11 @@ class Account {
   // 4) Private methods
   // #approveLoan(val) {
   _approveLoan(val) {
-    return true
+    return true;
   }
 }
 
-const acc1 = new Account("Jonas", 'EUR', 111);
+const acc1 = new Account("Jonas", "EUR", 111);
 
 // acc1._movements.push(250);
 // acc1._movements.push(-140);
@@ -515,8 +517,14 @@ acc1.withdraw(140);
 acc1.requestLoan(1000);
 console.log(acc1.getMovements());
 console.log(acc1);
+Account.helper();
 
 // console.log(acc1.#movements);
 // console.log(acc1.#pin);
 // console.log(acc1.approveLoan(100));
-Account.helper();
+
+/////////////////////////////////////////
+// Chaining Methods
+
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
