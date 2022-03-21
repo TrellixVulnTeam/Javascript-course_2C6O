@@ -50,7 +50,6 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
-*/
 
 ///////////////////////////////////////
 // The Module Pattern
@@ -82,3 +81,18 @@ ShoppingCart2.addToCart("apple", 4);
 ShoppingCart2.addToCart("pizza", 2);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost);
+*/
+
+///////////////////////////////////////
+// CommonJS/Node.js  Modules
+
+// Export
+export.addTocart = function (product, quantity) {
+  cart.push({ product, quantity });
+  console.log(
+    `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
+  );
+};
+
+// Import
+const { addTocart } = require('./shoppingCart');
