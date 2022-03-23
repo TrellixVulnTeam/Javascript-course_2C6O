@@ -3,7 +3,7 @@
 ///////////////////////////////////////
 // Exporting and Importing in ES6 Modules
 
-/*
+
 // Importing module
 // import {addToCart, totalPrice as price, tq } from "./shoppingCart.js";
 // addToCart("bread", 5);
@@ -26,6 +26,8 @@ add("apples", 4);
 
 console.log(cart);
 
+
+/*
 ///////////////////////////////////////
 // Top-Level await (ES2022)
 
@@ -50,7 +52,9 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
+*/
 
+/*
 ///////////////////////////////////////
 // The Module Pattern
 
@@ -81,7 +85,9 @@ ShoppingCart2.addToCart("apple", 4);
 ShoppingCart2.addToCart("pizza", 2);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost);
+*/
 
+/*
 ///////////////////////////////////////
 // CommonJS/Node.js  Modules
 
@@ -96,6 +102,7 @@ export.addTocart = function (product, quantity) {
 // Import
 const { addTocart } = require('./shoppingCart');
 */
+
 
 ///////////////////////////////////////
 // Introduction to NPM
